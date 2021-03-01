@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+    env:
+      YOSYS: yowasp-yosys
+      NEXTPNR_ICE40: yowasp-nextpnr-ice40
+      ICEPACK: yowasp-icepack
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install Poetry
+        run:
+          pip install poetry poethepoet
+      - name: Create Poetry environment
+        run: |
+          python -V
+          poetry --version
+          poetry install
+      - name: Install YoWASP
+        run: |
+          poetry run pip install yowasp-yosys yowasp-nextpnr-ice40
+      - name: Run tests
+        run: poe test

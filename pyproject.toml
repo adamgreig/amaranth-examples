@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "nmigen-examples"
+version = "0.1.0"
+description = ""
+authors = ["Adam Greig <adam@adamgreig.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+nmigen = {git="https://github.com/nmigen/nmigen"}
+nmigen-boards = {git="https://github.com/nmigen/nmigen-boards"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+flake8 = "^3.8"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+python_files = "*.py"
+
+[tool.poe.tasks]
+test = "pytest"
+check = "flake8"
