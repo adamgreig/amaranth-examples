@@ -12,6 +12,8 @@ jobs:
       YOSYS: yowasp-yosys
       NEXTPNR_ICE40: yowasp-nextpnr-ice40
       ICEPACK: yowasp-icepack
+      NEXTPNR_ECP5: yowasp-nextpnr-ecp5
+      ECPPACK: yowasp-ecppack
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,6 +31,6 @@ jobs:
           poetry install
       - name: Install YoWASP
         run: |
-          poetry run pip install yowasp-yosys yowasp-nextpnr-ice40-all
+          poetry run pip install yowasp-yosys yowasp-nextpnr-ice40-all yowasp-nextpnr-ecp5-all
       - name: Run tests
         run: poe test

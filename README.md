@@ -12,3 +12,7 @@ This repository contains a variety of nmigen examples:
 * [instance.py](nmigen_examples/instance.py): Using an Instance to instantiate
     a module (from Verilog or a platform primitive), and adding a Verilog file
     to the build process.
+* [pll_ecp5.py](nmigen_examples/pll_ecp5.py): Use a platform PLL primitive on
+    the ECP5.
+* [pll_ice40.py](nmigen_examples/pll_ice40.py): Use a platform PLL primitive on
+    the iCE40.
