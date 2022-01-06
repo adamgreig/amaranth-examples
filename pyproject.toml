@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "nmigen-examples"
+name = "amaranth-examples"
 version = "0.1.0"
 description = ""
 authors = ["Adam Greig <adam@adamgreig.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-nmigen = {git="https://github.com/nmigen/nmigen"}
-nmigen-boards = {git="https://github.com/nmigen/nmigen-boards"}
+amaranth = {git="https://github.com/amaranth-lang/amaranth", branch="main"}
+amaranth-boards = {git="https://github.com/amaranth-lang/amaranth-boards", branch="main"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"

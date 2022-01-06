@@ -2,8 +2,8 @@
 Example testbench for a combinatorial-only module.
 """
 
-from nmigen import Module, Signal, Elaboratable
-from nmigen.sim import Simulator, Settle
+from amaranth import Module, Signal, Elaboratable
+from amaranth.sim import Simulator, Settle
 
 
 class ALU(Elaboratable):

@@ -3,8 +3,8 @@ Uses an Instance which could be a platform primitive but in this case is
 an external Verilog file which we'll include in the build.
 """
 
-from nmigen import Module, Signal, Elaboratable, Instance, ClockSignal
-from nmigen_boards.icebreaker import ICEBreakerPlatform
+from amaranth import Module, Signal, Elaboratable, Instance, ClockSignal
+from amaranth_boards.icebreaker import ICEBreakerPlatform
 
 
 class Top(Elaboratable):

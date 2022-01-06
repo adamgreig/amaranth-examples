@@ -4,8 +4,8 @@ A counter that generates a pulse on rollover.
 Demonstrates basic modules and synchronous testbenches.
 """
 
-from nmigen import Module, Signal, Elaboratable
-from nmigen.sim import Simulator
+from amaranth import Module, Signal, Elaboratable
+from amaranth.sim import Simulator
 
 
 class Counter(Elaboratable):

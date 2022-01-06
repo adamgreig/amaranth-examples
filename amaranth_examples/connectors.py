@@ -5,9 +5,9 @@ Connectors require calling `platform.add_resources()` to create a new
 resource which you can later request.
 """
 
-from nmigen import Module, Signal, Elaboratable
-from nmigen.build import Resource, Pins
-from nmigen_boards.icebreaker import ICEBreakerPlatform
+from amaranth import Module, Signal, Elaboratable
+from amaranth.build import Resource, Pins
+from amaranth_boards.icebreaker import ICEBreakerPlatform
 
 
 class Top(Elaboratable):

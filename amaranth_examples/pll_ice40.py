@@ -2,8 +2,8 @@
 Demonstrates instantiating and using a PLL on an iCE40 platform.
 """
 
-from nmigen import Signal, Module, Elaboratable, Instance, ClockDomain
-from nmigen_boards.icebreaker import ICEBreakerPlatform
+from amaranth import Signal, Module, Elaboratable, Instance, ClockDomain
+from amaranth_boards.icebreaker import ICEBreakerPlatform
 
 
 class Top(Elaboratable):
@@ -15,7 +15,7 @@ class Top(Elaboratable):
         cd_sync = ClockDomain("sync")
         m.domains += cd_sync
 
-        # We add a clock constraint so nmigen can tell nextpnr to check that
+        # We add a clock constraint so amaranth can tell nextpnr to check that
         # this clock domain meets timing.
         platform.add_clock_constraint(cd_sync.clk, 48e6)
 

@@ -2,9 +2,9 @@
 Demonstrate synthesis for a custom board, using an iCE40UP5k FPGA.
 """
 
-from nmigen import Module, Signal, Elaboratable
-from nmigen.vendor.lattice_ice40 import LatticeICE40Platform
-from nmigen.build import Resource, Pins, Clock, Attrs
+from amaranth import Module, Signal, Elaboratable
+from amaranth.vendor.lattice_ice40 import LatticeICE40Platform
+from amaranth.build import Resource, Pins, Clock, Attrs
 
 
 class CustomPlatform(LatticeICE40Platform):
@@ -13,7 +13,7 @@ class CustomPlatform(LatticeICE40Platform):
     where we've wired a 20MHz clock to pin 35, and put LEDs (active high)
     on pins 46-48.
 
-    We use the Clock property to let nmigen know this signal is a clock at
+    We use the Clock property to let amaranth know this signal is a clock at
     a particular frequency, which it in turn tells the placement software
     about, so that nextpnr can check the circuit is able to run at the
     specified frequency.
@@ -21,7 +21,7 @@ class CustomPlatform(LatticeICE40Platform):
     We use the Attrs(GLOBAL=True) property to request that this clock input
     is immediately put into a global buffer on the iCE40 FPGA.
 
-    By specifying `default_clk`, we tell nmigen to create a default clock
+    By specifying `default_clk`, we tell amaranth to create a default clock
     domain named "sync" if none exists using the specified signal as the
     clock input. If we didn't specify default_clk we'd have to create the
     clock domain ourselves.
