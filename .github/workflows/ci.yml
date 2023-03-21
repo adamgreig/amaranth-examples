@@ -7,7 +7,7 @@ on:
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       YOSYS: yowasp-yosys
       NEXTPNR_ICE40: yowasp-nextpnr-ice40
@@ -17,12 +17,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
       - name: Install Poetry
         run:
+          pip install --upgrade pip
           pip install poetry poethepoet
       - name: Create Poetry environment
         run: |
