@@ -46,6 +46,9 @@ class Top(Elaboratable):
             # a `.i` attribute.
             i_PACKAGEPIN=platform.request("clk12", dir="-"),
 
+            # Force RESET off.
+            i_RESETB=1,
+
             # Output to the clock domain's clk signal.
             # We could also have written ClockSignal("sync").
             o_PLLOUTGLOBAL=cd_sync.clk,
