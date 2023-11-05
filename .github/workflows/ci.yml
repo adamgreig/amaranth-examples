@@ -28,6 +28,6 @@ jobs:
           poetry install
       - name: Install YoWASP
         run: |
-          poetry run pip install yowasp-yosys yowasp-nextpnr-ice40-all yowasp-nextpnr-ecp5-all
+          poetry run pip install yowasp-yosys yowasp-nextpnr-ice40 yowasp-nextpnr-ecp5
       - name: Run tests
         run: poe test
