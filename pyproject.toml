@@ -5,7 +5,7 @@ description = ""
 authors = ["Adam Greig <adam@adamgreig.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 amaranth = {git="https://github.com/amaranth-lang/amaranth", branch="main"}
 amaranth-boards = {git="https://github.com/amaranth-lang/amaranth-boards", branch="main"}
 

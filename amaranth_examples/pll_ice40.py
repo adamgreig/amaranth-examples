@@ -19,6 +19,31 @@ class Top(Elaboratable):
         # this clock domain meets timing.
         platform.add_clock_constraint(cd_sync.clk, 48e6)
 
+        # A mystery errata on iCE40 devices means that BRAMs will read as
+        # all-zero for ~3µs after configuration completes. If you use a "sync"
+        # domain without creating it, Amaranth will create one for you and
+        # ensure it is reset for 3µs after startup to avoid this issue.
+        # However, if you create your own clock domain, you have to deal with
+        # this manually if it's important. For this example there are no BRAMs
+        # so it's not important, but for the sake of example, a suitable reset
+        # is added, delaying for approx 15µs using the 48MHz PLL output clock.
+        # Additionally, since we're running this timer off the PLL, we can
+        # keep this domain in reset until the PLL is locked.
+        # For more details, see create_missing_domain() in
+        # amaranth/vendor/_lattice_ice40.py.
+        cd_por = ClockDomain("por", local=True)
+        m.domains += cd_por
+        delay = int(5 * 3e-6 * 48e6)
+        timer = Signal(range(delay))
+        ready = Signal()
+        pll_locked = Signal()
+        with m.If(timer == delay):
+            m.d.por += ready.eq(1)
+        with m.Else():
+            m.d.por += timer.eq(timer + 1)
+        m.d.comb += cd_por.clk.eq(cd_sync.clk), cd_por.rst.eq(~pll_locked)
+        m.d.comb += cd_sync.rst.eq(~ready)
+
         # Create an Instance with the required parameters, inputs, and outputs.
         # We have a choice of either SB_PLL40_CORE or SB_PLL40_PAD (or the _2F
         # versions of each, to have two output frequencies).
@@ -52,6 +77,10 @@ class Top(Elaboratable):
             # Output to the clock domain's clk signal.
             # We could also have written ClockSignal("sync").
             o_PLLOUTGLOBAL=cd_sync.clk,
+
+            # We'll use the LOCK output to keep the POR domain in reset
+            # until the PLL has locked.
+            o_LOCK=pll_locked,
         )
 
         # Now our sync logic runs at 48MHz:
