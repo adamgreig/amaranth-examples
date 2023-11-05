@@ -3,7 +3,7 @@ Demonstrate use of DDR outputs on a custom ECP5 board.
 """
 
 from amaranth import Module, Elaboratable, ClockSignal
-from amaranth.vendor.lattice_ecp5 import LatticeECP5Platform
+from amaranth.vendor import LatticeECP5Platform
 from amaranth.build import Resource, Pins, Clock
 
 

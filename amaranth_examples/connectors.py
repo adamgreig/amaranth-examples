@@ -22,8 +22,8 @@ class Top(Elaboratable):
         ])
 
         # Now we can request and use them.
-        leds = platform.request("leds", 0)
-        switches = platform.request("sw", 0)
+        leds = platform.request("leds", 0).o
+        switches = platform.request("sw", 0).i
         m.d.sync += leds.eq(~switches)
 
         return m

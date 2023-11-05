@@ -3,7 +3,7 @@ Demonstrate synthesis for a custom board, using an iCE40UP5k FPGA.
 """
 
 from amaranth import Module, Signal, Elaboratable
-from amaranth.vendor.lattice_ice40 import LatticeICE40Platform
+from amaranth.vendor import LatticeICE40Platform
 from amaranth.build import Resource, Pins, Clock, Attrs
 
 
